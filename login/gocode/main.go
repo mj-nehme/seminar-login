@@ -21,10 +21,10 @@ import (
 
 var localhost = "127.0.0.1"
 
-var http_port = 8000
+var http_port = 80
 var mongodb_port = 27017
-var database = "login_app"
-var collection = "users"
+var database_name = "login_app"
+var collection_name = "users"
 var username = "Ahmad"
 var password = "Pass123"
 var usersCollection *mongo.Collection
@@ -167,8 +167,11 @@ func connectDB(mongodb_ip string) *mongo.Collection {
 		panic(err)
 	}
 
-	db := client.Database(database)
-	return db.Collection(collection)
+	db := client.Database(database_name)
+
+	db.CreateCollection(context.TODO(), collection_name)
+
+	return db.Collection(collection_name)
 }
 
 func createUsers() {
