@@ -6,7 +6,7 @@ COPY gocode/* ./
 
 RUN go mod download
 
-EXPOSE 8000
+EXPOSE 80
 ARG MONGODB_IP
 ENV MONGODB_IP=$MONGODB_IP
 
